@@ -1,303 +1,838 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UCI Cycling Blog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCI Road Cycling Blog — April &amp; May 2026</title>
+  <style>
+    :root{
+      --bg1:#08111f;
+      --bg2:#0f172a;
+      --bg3:#1e293b;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --blue:#0ea5e9;
+      --amber:#f59e0b;
+      --pink:#ec4899;
+      --purple:#8b5cf6;
+      --shadow: 0 18px 50px rgba(2, 6, 23, 0.26);
+      --radius: 22px;
+      --radius-sm: 16px;
+    }
  
-<style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg,#0f172a,#1e293b);
-  color: #e2e8f0;
-}
+    * { box-sizing: border-box; }
  
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 30px 20px 60px;
-}
+    html { scroll-behavior: smooth; }
  
-h1 {
-  text-align: center;
-  color: #22c55e;
-  margin-bottom: 30px;
-}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color:#e5e7eb;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.14), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,0.10), transparent 24%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 38%, var(--bg3) 100%);
+      line-height:1.7;
+    }
  
-/* WEEK CARD */
-details {
-  background: #ffffff;
-  color: #111827;
-  border-radius: 18px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
+    a { color: inherit; }
  
-details:hover {
-  transform: translateY(-3px);
-}
+    .shell{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
  
-summary {
-  cursor: pointer;
-  padding: 18px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg,#16a34a,#0ea5e9);
-  color: white;
-}
+    .hero{
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      padding: 34px 28px 30px;
+      margin-bottom: 24px;
+      background:
+        linear-gradient(130deg, rgba(22,163,74,0.94), rgba(14,165,233,0.90) 55%, rgba(139,92,246,0.88));
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
  
-/* IMAGE */
-.banner {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background: rgba(255,255,255,0.12);
+      z-index:-1;
+      filter: blur(2px);
+    }
  
-/* CONTENT */
-.content {
-  padding: 25px;
-}
+    .hero::before{
+      width: 280px;
+      height: 280px;
+      top: -80px;
+      right: -50px;
+    }
  
-h3 {
-  color: #0ea5e9;
-  margin-top: 20px;
-}
+    .hero::after{
+      width: 200px;
+      height: 200px;
+      bottom: -60px;
+      left: -40px;
+    }
  
-p {
-  line-height: 1.7;
-  margin-bottom: 12px;
-  color: #1f2937;
-}
-</style>
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.95);
+      font-weight:800;
+      font-size: .88rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
+ 
+    .hero h1{
+      margin: 16px 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.06;
+      color:#fff;
+    }
+ 
+    .hero p{
+      margin:0;
+      max-width: 860px;
+      color: rgba(255,255,255,0.93);
+      font-size: 1.02rem;
+    }
+ 
+    .topnav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 20px 0 28px;
+    }
+ 
+    .jump{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      color:#e2e8f0;
+      text-decoration:none;
+      font-weight:700;
+      font-size: .92rem;
+      transition: .22s ease;
+    }
+ 
+    .jump:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.18);
+    }
+ 
+    .weeks{
+      display:grid;
+      gap:22px;
+    }
+ 
+    details.week{
+      background: rgba(255,255,255,0.985);
+      color: var(--text);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,0.3);
+    }
+ 
+    details.week[open]{
+      outline: 2px solid rgba(34,197,94,0.18);
+      outline-offset: 0;
+    }
+ 
+    summary{
+      list-style:none;
+      cursor:pointer;
+    }
+ 
+    summary::-webkit-details-marker{ display:none; }
+ 
+    .summary-head{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:18px;
+      align-items:center;
+      padding: 22px 24px;
+      background:
+        linear-gradient(180deg, rgba(248,250,252,0.98), rgba(241,245,249,0.98));
+      border-bottom:1px solid var(--line);
+    }
+ 
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width: fit-content;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color: var(--green);
+      background: rgba(22,163,74,0.10);
+      border:1px solid rgba(22,163,74,0.18);
+      margin-bottom:10px;
+    }
+ 
+    .summary-head h2{
+      margin:0 0 6px;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      line-height:1.22;
+      color: #0f172a;
+    }
+ 
+    .summary-head p{
+      margin:0;
+      color: var(--muted);
+      font-size:.97rem;
+    }
+ 
+    .toggle{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:1.5rem;
+      line-height:1;
+      font-weight:500;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      transition: transform .2s ease;
+      flex-shrink:0;
+    }
+ 
+    details[open] .toggle{
+      transform: rotate(45deg);
+    }
+ 
+    .banner{
+      position:relative;
+      min-height: 230px;
+      display:flex;
+      align-items:flex-end;
+      padding: 18px 22px;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.0)),
+        linear-gradient(135deg, #1e293b, #0f172a);
+      color:#fff;
+      isolation:isolate;
+    }
+ 
+    .banner::before{
+      content:"";
+      position:absolute;
+      inset:-20% auto auto -10%;
+      width: 240px;
+      height: 240px;
+      border-radius:50%;
+      background: rgba(255,255,255,0.08);
+      filter: blur(2px);
+      z-index:-1;
+    }
+ 
+    .banner::after{
+      content:"";
+      position:absolute;
+      right:-30px;
+      bottom:-40px;
+      width: 260px;
+      height: 260px;
+      border-radius:50%;
+      background: rgba(255,255,255,0.08);
+      z-index:-1;
+    }
+ 
+    .banner h3{
+      margin:0;
+      font-size: clamp(1.15rem, 2vw, 1.6rem);
+      color:#fff;
+      line-height:1.2;
+    }
+ 
+    .banner p{
+      margin:8px 0 0;
+      color: rgba(255,255,255,0.88);
+      max-width: 760px;
+      font-size: .98rem;
+    }
+ 
+    .banner .icon{
+      position:absolute;
+      top:16px;
+      right:18px;
+      font-size: 2rem;
+      opacity:.9;
+    }
+ 
+    .b1{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #166534, #0f766e 40%, #0369a1);
+    }
+    .b2{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #92400e, #b45309 35%, #0f766e);
+    }
+    .b3{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #1d4ed8, #0ea5e9 42%, #14b8a6);
+    }
+    .b4{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #7c3aed, #ec4899 44%, #f59e0b);
+    }
+    .b5{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #065f46, #16a34a 40%, #f59e0b);
+    }
+    .b6{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #0f172a, #475569 42%, #0ea5e9);
+    }
+    .b7{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #6d28d9, #2563eb 40%, #0f766e);
+    }
+    .b8{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #0f766e, #14b8a6 40%, #f59e0b);
+    }
+    .b9{ background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.18), transparent 16%),
+      radial-gradient(circle at 76% 30%, rgba(255,255,255,0.13), transparent 18%),
+      linear-gradient(135deg, #991b1b, #dc2626 40%, #f59e0b);
+    }
+ 
+    .content{
+      padding: 24px;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+ 
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+ 
+    .block{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-left: 5px solid var(--green);
+      border-radius: var(--radius-sm);
+      padding:18px 18px 14px;
+    }
+ 
+    .block.analysis{ border-left-color: var(--blue); }
+    .block.prediction{ border-left-color: var(--amber); }
+ 
+    .block h4{
+      margin:0 0 10px;
+      color:#0f172a;
+      font-size:1rem;
+    }
+ 
+    .block p{
+      margin: 0 0 14px;
+      color:#1e293b;
+      font-size: .99rem;
+    }
+ 
+    .block p:last-child{ margin-bottom:0; }
+ 
+    .sources{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px dashed #cbd5e1;
+      color:#64748b;
+      font-size:.92rem;
+    }
+ 
+    .sources strong{ color:#334155; }
+ 
+    .footer{
+      text-align:center;
+      color: rgba(226,232,240,0.86);
+      margin-top: 28px;
+      font-size: .95rem;
+    }
+ 
+    @media (max-width: 760px){
+      .hero{ padding:28px 20px 24px; }
+      .summary-head{
+        grid-template-columns: 1fr;
+      }
+      .toggle{
+        justify-self:start;
+      }
+      .content{
+        padding:18px;
+      }
+      .banner{
+        min-height: 190px;
+        padding: 16px 16px;
+      }
+      .banner .icon{
+        font-size: 1.7rem;
+        top:14px;
+        right:14px;
+      }
+    }
+  </style>
 </head>
- 
 <body>
-<div class="container">
+  <div class="shell">
+    <header class="hero">
+      <div class="eyebrow">🚴 UCI Road Cycling Blog</div>
+      <h1>April &amp; May 2026 — Expanded Edition</h1>
+      <p>
+        A polished weekly cycling blog covering the Cobbled Classics, Ardennes campaign, Tour de Romandie,
+        and Giro d’Italia. Each week expands to show the full recap, rider analysis, and prediction using your original text.
+      </p>
+    </header>
  
-<h1>🚴 UCI Road Cycling Blog — April & May 2026</h1>
+    <nav class="topnav" aria-label="Jump to week">
+      <a class="jump" href="#w1">Apr 1–6</a>
+      <a class="jump" href="#w2">Apr 7–13</a>
+      <a class="jump" href="#w3">Apr 14–19</a>
+      <a class="jump" href="#w4">Apr 20–26</a>
+      <a class="jump" href="#w5">Apr 27–May 3</a>
+      <a class="jump" href="#w6">May 4–10</a>
+      <a class="jump" href="#w7">May 11–17</a>
+      <a class="jump" href="#w8">May 18–24</a>
+      <a class="jump" href="#w9">May 25–31</a>
+    </nav>
  
-<!-- WEEK 1 -->
-<details open>
-<summary>April 1–6 — Flemish Classics Explosion</summary>
-<img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182" class="banner">
-<div class="content">
+    <main class="weeks">
  
-<h3>Recap</h3>
-<p>
-April opened with Dwars door Vlaanderen, where Filippo Ganna caught Wout van Aert in the final meters of a dramatic 184.6 km race. Days later, Tadej Pogačar won the Tour of Flanders (278 km), defeating van der Poel and Evenepoel with the full elite field present.
-</p>
-<p>
-Meanwhile, the Basque Country began with Paul Seixas winning the opening time trial and taking the race lead immediately.
-</p>
+      <!-- WEEK 1 -->
+      <details class="week" id="w1" open>
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of April 1–6, 2026</div>
+              <h2>The Flemish block explodes into life</h2>
+              <p>Dwars door Vlaanderen, Tour of Flanders, and the opening of the Tour of the Basque Country ignite April.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Ganna proved he can compete in elite Classics beyond time trials, while Pogačar validated himself against every major cobbled contender. Seixas shifted from promising rider to stage-race controller.
-</p>
+        <div class="banner b1">
+          <div class="icon">🪨</div>
+          <div>
+            <h3>Flemish Classics &amp; the Basque opener</h3>
+            <p>Ganna takes Dwars, Pogačar wins Flanders, and Seixas starts Itzulia in yellow.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-Attention turned to whether Pogačar could handle Roubaix’s brutality and if Seixas could convert his early lead into a major GC statement.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>April opened with one of the most dramatic finales of the cobbled spring at Dwars door Vlaanderen (April 1), where Filippo Ganna won in 3:48:27 after catching Wout van Aert in the final meters of the run-in to Waregem, while Søren Wærenskjold completed the podium. The race was 184.6 km long from Roeselare to Waregem, and the reports in the results pages describe Van Aert as having attacked decisively on the Eikenberg, dropped his companions one by one, and looked on course for victory until Ganna reeled him in right at the finish. [domestique...ycling.com], [cyclingstage.com], [procyclingstats.com] [domestique...ycling.com], [cyclingstage.com]</p>
+              <p>The first Monument of the month followed immediately at the Tour of Flanders (April 5), where Tadej Pogačar won the 278.2 km race from Antwerp to Oudenaarde in 6:20:07, beating Mathieu van der Poel by 34 seconds and Remco Evenepoel by 1:11. Wout van Aert finished fourth and Mads Pedersen fifth, which matters because it meant the biggest cobbled names all featured deep into the finale rather than being eliminated early. [domestique...ycling.com]</p>
+              <p>At the same time, the Tour of the Basque Country began on April 6 with a Bilbao time trial, and Paul Seixas immediately took both the stage and the race lead. [procyclingstats.com], [cyclingstage.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>This week produced three distinct narratives. Ganna looked like a rider stretching beyond his time trial identity and into genuine top-tier Classics territory, because Dwars was not just a watts test — it was a WorldTour one-day race won against a field that still included Van Aert, Philipsen, Pedersen, Laporte, and Girmay near the finish. [domestique...ycling.com], [procyclingstats.com]</p>
+              <p>Pogačar, meanwhile, delivered the most important result of the week. Winning Flanders ahead of van der Poel and Evenepoel, with Van Aert and Pedersen also in the top five, showed that his cobbled form was not theoretical or opportunistic — it stood up against the full elite field of the discipline. [domestique...ycling.com]</p>
+              <p>Then there was Seixas, whose Basque opening stage win placed him on a very different storyline. A rider who had already been visible in the spring now moved from “promising” into “controlling a WorldTour stage race.” [procyclingstats.com], [cyclingstage.com]</p>
+            </section>
  
-<!-- WEEK 2 -->
-<details>
-<summary>April 7–13 — Roubaix & Seixas Breakthrough</summary>
-<img src="https://images.unsplash.com/photo-1506111583091-becfd4c5d8ec" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>From that point, the next question was whether Pogačar’s Flanders form would translate to Paris–Roubaix, where raw power, cobblestone handling, and late-race durability are even more brutal. At the same time, the Basque Country looked set to become a real proving ground for Seixas, because he was not just leading after one day — he was positioned to turn early speed into a full stage-race statement. [en.wikipedia.org], [en.wikipedia.org] [procyclingstats.com], [cyclingstage.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Paul Seixas dominated Itzulia Basque Country, winning three stages and the GC by over 2 minutes — becoming the youngest winner ever. Paris–Roubaix followed, where Wout van Aert won the fastest edition ever, beating Pogačar in a sprint.
-</p>
+      <!-- WEEK 2 -->
+      <details class="week" id="w2">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of April 7–13, 2026</div>
+              <h2>Seixas rules the Basque Country, Van Aert conquers Roubaix</h2>
+              <p>Historic Itzulia control and a fastest-ever Paris–Roubaix define the week.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Van Aert’s Roubaix win marked redemption and national significance. Seixas’ control of Itzulia represented one of the biggest breakthroughs of the spring. Pogačar enhanced his reputation with Flanders + Roubaix results in one week.
-</p>
+        <div class="banner b2">
+          <div class="icon">🏁</div>
+          <div>
+            <h3>Itzulia mastery &amp; Hell of the North</h3>
+            <p>Seixas turns promise into dominance, while Van Aert captures Roubaix authority.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-The Ardennes would reward climbers, with Evenepoel, Pogačar, and Seixas expected to emerge as the key riders.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The Tour of the Basque Country turned into a breakout week for Paul Seixas. He won Stage 1, Stage 2, and Stage 5, stayed in yellow throughout the race, and took the final overall by 2:30 over Florian Lipowitz and 2:33 over Tobias Halland Johannessen. Stages 3, 4, and 6 went to Axel Laurance, Alex Aranburu, and Andrew August respectively. The official Itzulia site said Seixas became the youngest rider ever to win the Itzulia, which elevates the result from “good stage race” to “historically significant performance.” [procyclingstats.com], [cyclingstage.com], [watts2win.eu] [itzulia.eus]</p>
+              <p>Then came Paris–Roubaix (April 12). The race covered 258.3 km from Compiègne to Roubaix, including 54.8 km of cobblestones across 30 sectors, and Wout van Aert beat Tadej Pogačar in a sprint finish in 5h 16' 52". Jasper Stuyven was third, Mathieu van der Poel fourth, and Christophe Laporte fifth. The race report also records it as the fastest ever edition, at an average speed of 48.91 km/h. [en.wikipedia.org]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>For Van Aert, Roubaix was not just another big win. The result page states it was his first Paris–Roubaix victory and also the first Belgian men’s win in the race since 2019, which gave the success both personal and national significance. Given how often Van Aert’s Classics campaigns have featured heroic rides without the final prize, winning Roubaix in the fastest edition on record gave him a very different kind of authority. [en.wikipedia.org] [en.wikipedia.org]</p>
+              <p>For Seixas, the Basque Country was arguably the biggest single breakthrough of the spring. He did not just edge the GC; he controlled the race, won three of the six stages, and finished the week clear of strong stage racers such as Lipowitz and Johannessen. [procyclingstats.com], [watts2win.eu]</p>
+              <p>Pogačar, although second in Roubaix, actually reinforced his aura rather than diminishing it. Across just over a week he had won Flanders and then finished runner-up in Roubaix — two of the hardest one-day races in the sport, on very different forms of cobbled racing. [domestique...ycling.com], [en.wikipedia.org]</p>
+            </section>
  
-<!-- WEEK 3 -->
-<details>
-<summary>April 14–19 — Evenepoel Wins Amstel</summary>
-<img src="https://images.unsplash.com/photo-1520975922284-9f130a2449a9" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>With the cobbled Monuments finished, the spotlight shifted toward the Ardennes, where the terrain would favor riders with more punch on steep climbs than in flat, attritional cobbled sectors. Based on the results so far, Evenepoel, Pogačar, and Seixas looked like the most natural names to watch, but the key unknown was whether Seixas could carry his Basque form directly into one-day hill races. [domestique...ycling.com], [cyclingstage.com] [cyclingstage.com], [itzulia.eus]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Remco Evenepoel won Amstel Gold Race after a long breakaway with Skjelmose, finishing nearly two minutes ahead of the chasing group.
-</p>
+      <!-- WEEK 3 -->
+      <details class="week" id="w3">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of April 14–19, 2026</div>
+              <h2>Evenepoel strikes at the Amstel Gold Race</h2>
+              <p>The cobbles fade and the Ardennes begin with a selective, two-man finish.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Evenepoel asserted himself as a top Ardennes rider, while Skjelmose confirmed elite status. The race gap highlighted how selective Amstel became.
-</p>
+        <div class="banner b3">
+          <div class="icon">⛰️</div>
+          <div>
+            <h3>Amstel opens the Ardennes chapter</h3>
+            <p>Evenepoel edges Skjelmose and stamps a new Ardennes signature.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-La Flèche Wallonne would favour explosive climbers, especially riders arriving with strong climbing rhythm like Seixas.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The transition from cobbles to Ardennes began with the Amstel Gold Race (April 19), where Remco Evenepoel won the 257.2 km race from Maastricht to Berg en Terblijt in 5:59:40 after a long two-man move with Mattias Skjelmose, whom he beat by one second. Benoît Cosnefroy finished third at 1:59, with Romain Grégoire fourth and Emiel Verstrynge fifth on the same time as Cosnefroy. [domestique...ycling.com], [procyclingstats.com], [cyclingstage.com]</p>
+              <p>The supporting race reports describe Amstel as being shaped on climbs such as the Kruisberg, Keutenberg, and the late Cauberg, with Evenepoel and Skjelmose separating themselves from the rest and staying clear to the line. What matters in narrative terms is the time gap: by the finish, the lead duo had nearly two minutes over the next group. [domestique...ycling.com], [cyclingstage.com] [domestique...ycling.com], [procyclingstats.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>Evenepoel’s Amstel win mattered because it gave him a clean, high-level Ardennes result against another elite all-round puncheur in Skjelmose. It also offered a contrast to his Flanders result the week before: at Flanders he was a very strong podium rider; at Amstel he became the outright race winner. [domestique...ycling.com], [procyclingstats.com] [domestique...ycling.com], [domestique...ycling.com]</p>
+              <p>The result also showed Skjelmose remained a major factor in hilly one-day racing. Losing by only one second after almost six hours of racing kept him firmly inside the top Ardennes tier rather than relegating him to supporting-cast status. [procyclingstats.com], [cyclingstage.com]</p>
+              <p>Cosnefroy’s third place at nearly two minutes, meanwhile, underlined how selective the race became. He was best of the rest, but the week’s main story was still that Evenepoel and Skjelmose were operating on a clearly higher line of performance in Limburg. [domestique...ycling.com], [procyclingstats.com]</p>
+            </section>
  
-<!-- WEEK 4 -->
-<details>
-<summary>April 20–26 — Ardennes Finale</summary>
-<img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd53" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>After Amstel, the obvious question was whether Evenepoel’s strength could transfer to La Flèche Wallonne, where the race usually narrows to one brutally steep final climb rather than a rolling sequence of attacks. At the same time, Seixas’ Basque shape made him a natural name for Huy, because riders arriving with climbing rhythm and sharp acceleration often thrive there. [procyclingstats.com], [cyclingstage.com] [cyclingnews.com], [cyclinglookout.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Seixas won Flèche Wallonne, becoming the youngest ever winner, while Pogačar claimed Liège–Bastogne–Liège after dropping him late.
-</p>
+      <!-- WEEK 4 -->
+      <details class="week" id="w4">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of April 20–26, 2026</div>
+              <h2>Seixas wins Huy, Pogačar finishes the Ardennes with Liège</h2>
+              <p>A breakthrough week for Seixas, but Pogačar remains the reference point.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Seixas confirmed himself as a major player, while Pogačar remained the benchmark, securing his fourth Liège win.
-</p>
+        <div class="banner b4">
+          <div class="icon">🏔️</div>
+          <div>
+            <h3>Mur de Huy drama &amp; Liège authority</h3>
+            <p>Seixas explodes into the top tier, while Pogačar closes the Ardennes in Monument style.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-Focus moved to Romandie, testing if Classics form could transition into stage-race dominance.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The week’s first major result was La Flèche Wallonne (April 22), where Paul Seixas won in 4:35:29, finishing three seconds ahead of Mauro Schmid and Ben Tulett, while Benoît Cosnefroy placed fourth and Mattias Skjelmose fifth. Several reports noted that Seixas became the youngest winner in Flèche Wallonne history, which is the kind of stat that turns a strong result into a landmark result. [procyclingstats.com], [cyclingstage.com] [cyclinglookout.com], [domestique...ycling.com]</p>
+              <p>The Ardennes then closed with Liège–Bastogne–Liège (April 26), where Tadej Pogačar won in 5:50:28, with Paul Seixas second at +0:45 and Remco Evenepoel third at +1:42. The top ten also included Emiel Verstrynge, Egan Bernal, Pello Bilbao, Romain Grégoire, and Tobias Halland Johannessen. The various result pages consistently describe Pogačar and Seixas going clear on La Redoute, before Pogačar finally shook Seixas on Roche-aux-Faucons. [procyclingstats.com], [cyclingstage.com] [cyclingstage.com], [cyclingarchives.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>This was the week when Paul Seixas stopped being “the rider who had a great Basque Country” and became a central name in the spring narrative. He won Flèche Wallonne and then finished second at Liège behind Pogačar, which means he backed up a steep-finish classic win with a Monument podium within four days. [procyclingstats.com], [cyclingstage.com], [procyclingstats.com]</p>
+              <p>But the week also confirmed that Pogačar still sat on top of the hierarchy. Liège was his fourth win in the race, and the sources note that this drew him level with Alejandro Valverde and Moreno Argentin, leaving only Eddy Merckx ahead on the all-time list. [cyclingarchives.com], [cyclingstage.com]</p>
+              <p>Evenepoel finished the week with an Amstel win and a Liège podium, which is still a very high Ardennes return, but he was no longer clearly the solitary challenger to Pogačar. By the end of April, Seixas had moved into that conversation too. [domestique...ycling.com], [procyclingstats.com]</p>
+            </section>
  
-<!-- WEEK 5 -->
-<details>
-<summary>April 27–May 3 — Romandie Dominance</summary>
-<img src="https://images.unsplash.com/photo-1526481280691-3c4693490c1c" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>With the Ardennes done, the immediate focus moved to Tour de Romandie, which often acts as a bridge between spring one-day form and early-summer stage-race shape. The key question was whether Pogačar would convert Monument-winning legs into multi-day control, and whether in-form riders like Lipowitz and Lenny Martinez could turn consistency into a podium in a shorter WorldTour stage race. [procyclingstats.com], [cyclingstage.com] [cyclinggrid.com], [bahraincyc...ngteam.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Pogačar dominated Tour de Romandie, winning 4 stages and GC. Georg Zimmermann also claimed a major win at Eschborn–Frankfurt.
-</p>
+      <!-- WEEK 5 -->
+      <details class="week" id="w5">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of April 27–May 3, 2026</div>
+              <h2>Pogačar crushes Romandie, Zimmermann lands a career win</h2>
+              <p>A WorldTour overmatch in Switzerland and a landmark German victory at Eschborn–Frankfurt.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Pogačar operated at a different level, while Lipowitz and Martinez showed strong GC potential. Zimmermann achieved a career-defining victory.
-</p>
+        <div class="banner b5">
+          <div class="icon">⚡</div>
+          <div>
+            <h3>Romandie domination &amp; a breakthrough one-day win</h3>
+            <p>Pogačar overwhelms the field, while Zimmermann claims a home-roads headline.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-The Giro would shift the sport toward endurance and long-term consistency.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The Tour de Romandie (April 28–May 3) became a showcase for Tadej Pogačar. The stage winners were Dorian Godon in the prologue, then Pogačar on Stages 1, 2, 4, and 5, with Godon also taking Stage 3. Pogačar won the overall in 20:05:42, with Florian Lipowitz second at +0:42 and Lenny Martinez third at +2:44. In plain terms, he won four of the six race days and the general classification. [procyclingstats.com], [cyclinggrid.com], [cyclingstage.com] [procyclingstats.com], [cyclingstage.com]</p>
+              <p>On May 1, Eschborn–Frankfurt added a different kind of story. Georg Zimmermann won the 211.4 km race in 4:59:34, beating Tom Pidcock and Ben Tulett in a sprint from a late front group. The official race site called it the biggest win of Zimmermann’s career, and the result pages note he became the first German winner since 2019. [eschborn-f...ankfurt.de], [domestique...ycling.com], [procyclingstats.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>Romandie suggested that, at least in short stage-race format, Pogačar was operating at a different level from the rest of the field. Winning GC by 42 seconds is impressive on its own, but doing it while taking four stages makes the hierarchy unambiguous. [cyclinggrid.com], [cyclingstage.com]</p>
+              <p>Lipowitz deserves attention here as well. Finishing second to Pogačar is not a defeat in the usual sense; it is also evidence that he could survive and respond better than almost everyone else across a compact, high-level route. Lenny Martinez also left Switzerland with a podium and the best young rider classification, preserving his upward trend after the Ardennes block. [cyclinggrid.com], [cyclingstage.com] [bahraincyc...ngteam.com]</p>
+              <p>Zimmermann’s Eschborn win mattered because it gave the spring a different kind of headline: not dominance from a global superstar, but a career-defining WorldTour win on home roads for a rider who had been in the conversation without owning a signature result of that size. [eschborn-f...ankfurt.de], [domestique...ycling.com]</p>
+            </section>
  
-<!-- WEEK 6 -->
-<details>
-<summary>May 4–10 — Giro Begins</summary>
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>After Romandie, the calendar was about to shift from one-day explosiveness and short stage-race aggression into the three-week logic of the Giro d’Italia, which started on May 8. That meant the story would become less about who could produce one huge climb or one winning sprint and more about who could stay consistent through 21 stages, a Bulgarian start, and nearly 3,460 km of racing. [en.wikipedia.org], [procyclingstats.com] [en.wikipedia.org], [procyclingstats.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-The Giro opened in Bulgaria with sprint stages won by Paul Magnier and Guillermo Silva.
-</p>
+      <!-- WEEK 6 -->
+      <details class="week" id="w6">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of May 4–10, 2026</div>
+              <h2>The Giro begins in Bulgaria</h2>
+              <p>Fast openers, jersey volatility, and the first hints of how the race may evolve.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-The early race favored sprinters and opportunists, with GC contenders staying cautious.
-</p>
+        <div class="banner b6">
+          <div class="icon">🇮🇹</div>
+          <div>
+            <h3>Grand Tour opening block</h3>
+            <p>Magnier strikes twice, Silva takes a day, and the Giro begins to build its shape.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-Mountain stages would soon define the race hierarchy.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The 2026 Giro d’Italia started on May 8 in Nessebar, Bulgaria, and the race would run through 21 stages before finishing in Rome on May 31. The first three stages produced a fast, nervous opening block: Paul Magnier won Stage 1, Guillermo Thomas Silva won Stage 2, and Magnier again won Stage 3. After those three days, Magnier had two stage wins, but the race lead had already changed hands. [en.wikipedia.org], [procyclingstats.com] [procyclingstats.com], [cyclinggrid.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>The first weekend of the Giro belonged to fast finishers and opportunists rather than the biggest general classification names. Magnier’s two wins immediately made him a major figure in the points competition, while Silva’s stage and time in the leader’s jersey showed how volatile the opening days were. [procyclingstats.com], [cyclinggrid.com]</p>
+              <p>That volatility matters. In Grand Tours, the first days often look simple on paper but are crucial because they create pressure, jersey obligations, and early time losses that can shape team behavior later. Even without a major GC mountain stage yet, the race was already becoming structured around who had responsibilities and who could hide. [procyclingstats.com], [en.wikipedia.org]</p>
+            </section>
  
-<!-- WEEK 7 -->
-<details>
-<summary>May 11–17 — Giro Takes Shape</summary>
-<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>The first mountain tests were always likely to change the tone of the Giro. The route list shows that Stage 7 and Stage 9 were mountain stages, and those looked like the first days that could really bring the overall favorites into direct conflict. [procyclingstats.com], [procyclingstats.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Multiple winners emerged, while Afonso Eulálio held the lead. Vingegaard won key mountain stages.
-</p>
+      <!-- WEEK 7 -->
+      <details class="week" id="w7">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of May 11–17, 2026</div>
+              <h2>The Giro finds its first real shape</h2>
+              <p>Eulálio becomes a surprise jersey story, while Vingegaard begins to define the mountains.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-Eulálio became a surprise leader, while Vingegaard emerged as the strongest climber.
-</p>
+        <div class="banner b7">
+          <div class="icon">📈</div>
+          <div>
+            <h3>From volatility to emerging race logic</h3>
+            <p>Stage wins spread around, but the general classification starts to clarify.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-Time trial and mid-race stages would determine if the lead could hold.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The second Giro week began after the first rest day and immediately broadened the race narrative. Jhonatan Narváez won Stage 4, Igor Arrieta won Stage 5, and Davide Ballerini won Stage 6. After Stage 5, Afonso Eulálio moved into the overall lead and retained it through Stages 6, 7, 8, and 9. [procyclingstats.com]</p>
+              <p>The mountains then started to leave a clearer imprint. Jonas Vingegaard won Stage 7 and Stage 9, while Narváez also added Stage 8, giving him two stage wins in the race by that point. [procyclingstats.com], [cyclinggrid.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>This was the point at which the Giro turned from “open early race” into “race with an emerging logic.” Eulálio holding the lead through multiple stages matters because it meant the pink jersey was not immediately monopolized by the pre-race favorite. At the same time, Vingegaard’s two mountain-stage wins in one week were a very clear signal that, even without the race lead yet, he was shaping the hardest terrain. [procyclingstats.com] [procyclingstats.com], [cyclinggrid.com]</p>
+              <p>Narváez’s second stage win also deserves emphasis because it made him one of the race’s most visible aggressive riders of the first half, not just a one-day opportunist inside a Grand Tour. [procyclingstats.com], [cyclinggrid.com]</p>
+            </section>
  
-<!-- WEEK 8 -->
-<details>
-<summary>May 18–24 — Vingegaard Takes Control</summary>
-<img src="https://images.unsplash.com/photo-1506111583091-becfd4c5d8ec" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>The route moved next into a sequence that included the 42 km time trial on Stage 10 and then a series of transitional but increasingly selective stages. That meant the next week would likely show whether Eulálio could still defend pink against stronger, more established GC specialists — above all Vingegaard. [procyclingstats.com], [procyclingstats.com] [procyclingstats.com], [en.wikipedia.org]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Vingegaard took the overall lead on Stage 14 and began extending his advantage.
-</p>
+      <!-- WEEK 8 -->
+      <details class="week" id="w8">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of May 18–24, 2026</div>
+              <h2>Vingegaard takes control</h2>
+              <p>The Giro’s decisive hierarchy change arrives on Stage 14.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-This week defined the race hierarchy, with Vingegaard becoming dominant while stage wins remained diverse.
-</p>
+        <div class="banner b8">
+          <div class="icon">👑</div>
+          <div>
+            <h3>The turning point of the Giro</h3>
+            <p>Varied stage winners continue, but the maglia rosa finds its long-term owner.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-Final week would determine margins rather than the winner.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>This was the turning-point week of the Giro. After the second rest day, Filippo Ganna won the Stage 10 time trial, while Narváez, Alec Segaert, and Alberto Bettiol won Stages 11, 12, and 13. But the crucial race moment came on Stage 14, when Jonas Vingegaard won again and finally took the overall lead. Fredrik Dversnes Lavik then won Stage 15, but from that point onward the maglia rosa was on Vingegaard’s shoulders. [procyclingstats.com], [cyclinggrid.com] [procyclingstats.com], [cyclinggrid.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>The first half of the race had multiple leaders, multiple stage winners, and a much wider sense of volatility. This week ended that phase. The Giro Wikipedia summary states that Vingegaard took the lead on Stage 14 and then slowly extended his lead for the rest of the race. That matters because it means Stage 14 was not just another mountain win — it was the decisive change in hierarchy. [en.wikipedia.org] [en.wikipedia.org], [procyclingstats.com]</p>
+              <p>There was also significance in how many different rider profiles kept winning stages around him. Ganna’s time trial win, Bettiol’s long solo, Segaert’s success, and Narváez’s repeated raids all showed the Giro was lively and varied even as the GC itself became less open. [procyclingstats.com], [cyclinggrid.com], [procyclingstats.com]</p>
+            </section>
  
-<!-- WEEK 9 -->
-<details>
-<summary>May 25–31 — Giro Conclusion</summary>
-<img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182" class="banner">
-<div class="content">
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>Once Vingegaard had taken pink on Stage 14, the final week looked less like a battle to discover the strongest rider and more like a battle to measure how dominant he could be, and who would survive around him for the podium. [en.wikipedia.org], [procyclinguk.com]</p>
+            </section>
+          </div>
+        </div>
+      </details>
  
-<h3>Recap</h3>
-<p>
-Jonas Vingegaard won the Giro, with multiple stage wins and dominance in the mountains.
-</p>
+      <!-- WEEK 9 -->
+      <details class="week" id="w9">
+        <summary>
+          <div class="summary-head">
+            <div>
+              <div class="label">Week of May 25–31, 2026</div>
+              <h2>Vingegaard closes the Giro in dominant fashion</h2>
+              <p>A structurally dominant Grand Tour win sets up the sport’s next major rivalry.</p>
+            </div>
+            <div class="toggle">+</div>
+          </div>
+        </summary>
  
-<h3>Rider Analysis</h3>
-<p>
-This performance cemented Vingegaard’s place as a Grand Tour leader. Gall and Hindley completed a strong podium, while Magnier and Ciccone won secondary classifications.
-</p>
+        <div class="banner b9">
+          <div class="icon">🏆</div>
+          <div>
+            <h3>Rome closes a landmark Giro</h3>
+            <p>Five stage wins, all-three-Grand-Tours history, and a shifting Tour de France narrative.</p>
+          </div>
+        </div>
  
-<h3>Prediction</h3>
-<p>
-The season now turns toward the Tour de France, with rivalry between Pogačar and Vingegaard intensifying.
-</p>
+        <div class="content">
+          <div class="grid">
+            <section class="block">
+              <h4>Recap</h4>
+              <p>The final week brought the decisive closing sequence: Vingegaard won Stage 16, Michael Valgren won Stage 17, Paul Magnier won Stage 18, Sepp Kuss won Stage 19, Vingegaard won Stage 20, and Jonathan Milan won the final stage in Rome. [procyclingstats.com], [procyclingstats.com], [bikeworldnews.com]</p>
+              <p>By the end of the race, Jonas Vingegaard had won the overall in 83:22:51, with Felix Gall second at +5:22 and Jai Hindley third at +6:25. The Giro summary also notes that this made Vingegaard the eighth rider to win all three Grand Tours, and the first since Chris Froome in 2018. [en.wikipedia.org], [procyclingstats.com], [bikeworldnews.com]</p>
+              <p>The secondary classifications also matter in understanding the final shape of the race: Paul Magnier won the points classification, Giulio Ciccone won the mountains classification, Afonso Eulálio won the young rider classification, and Visma–Lease a Bike took the team classification. [en.wikipedia.org], [bikeworldnews.com]</p>
+            </section>
  
-</div>
-</details>
+            <section class="block analysis">
+              <h4>Rider Analysis</h4>
+              <p>The broadest conclusion is simple: this was Vingegaard’s race. The official summary says he won five stages, with four of them in the mountains, and after Stage 14 he steadily increased his lead. That is not a squeaked-out Grand Tour; it is a structurally dominant one. [en.wikipedia.org] [en.wikipedia.org], [procyclinguk.com]</p>
+              <p>Felix Gall was arguably the biggest supporting success story. He finished second overall, and the final classification recap describes it as the best Grand Tour of his career. Hindley taking third completed a podium of proven climbers, while Eulálio’s sixth overall and white jersey marked one of the real breakout performances of the race. [bikeworldnews.com], [procyclinguk.com] [procyclinguk.com], [en.wikipedia.org]</p>
+              <p>The final week also strengthened Visma’s internal narrative heading toward summer. Kuss winning Stage 19 and Vingegaard taking Stages 16 and 20 meant the team did not just defend the race — it actively authored the final mountain sequence. [procyclingstats.com], [procyclingstats.com]</p>
+            </section>
  
-</div>
+            <section class="block prediction">
+              <h4>Prediction</h4>
+              <p>Once the Giro ended, the next natural storyline was not just “who wins the Tour,” but how Vingegaard’s Giro authority would alter the shape of the season’s next rivalry with Pogačar, who had already dominated so much of the spring in one-day racing and shorter stage races. If April had belonged mainly to Pogačar and Seixas, May ended with Vingegaard reclaiming the stage-race center of gravity. [en.wikipedia.org], [cyclingstage.com] [cyclingstage.com], [en.wikipedia.org]</p>
+            </section>
+          </div>
+        </div>
+      </details>
+ 
+    </main>
+ 
+    <p class="footer">
+      Built as a copy-and-paste HTML page for GitHub Pages. If you want, I can next add a homepage, rider leaderboard, standings widgets, or real hosted race photos.
+    </p>
+  </div>
 </body>
 </html>
+ 
+ 
