@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Blog – UCI Road Cycling</title>
+  <style>
+    :root{
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --accent: #16a34a;
+      --accent-2: #f59e0b;
+      --accent-3: #0ea5e9;
+      --shadow: 0 18px 40px rgba(2, 6, 23, 0.18);
+      --radius: 20px;
+    }
+ 
+    * { box-sizing: border-box; }
+ 
+    html {
+      scroll-behavior: smooth;
+    }
+ 
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(22,163,74,0.15), transparent 35%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.12), transparent 30%),
+        linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color: #e5e7eb;
+      line-height: 1.65;
+    }
+ 
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+ 
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(22,163,74,0.92), rgba(14,165,233,0.88)),
+        linear-gradient(135deg, #16a34a, #0ea5e9);
+      border-radius: 28px;
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+ 
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 240px;
+      height: 240px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      filter: blur(0.5px);
+    }
+ 
+    .hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.14);
+      padding: 8px 12px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+ 
+    .hero h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.08;
+      color: #ffffff;
+    }
+ 
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.02rem;
+    }
+ 
+    .section-title {
+      margin: 28px 0 14px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #dbeafe;
+      letter-spacing: 0.02em;
+    }
+ 
+    .accordion {
+      display: grid;
+      gap: 18px;
+    }
+ 
+    details.week-card {
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--text);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+ 
+    details.week-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 45px rgba(2, 6, 23, 0.22);
+    }
+ 
+    details.week-card[open] {
+      outline: 2px solid rgba(22,163,74,0.15);
+      outline-offset: 0;
+    }
+ 
+    summary.week-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background:
+        linear-gradient(180deg, rgba(248,250,252,0.98), rgba(241,245,249,0.98));
+    }
+ 
+    summary.week-summary::-webkit-details-marker {
+      display: none;
+    }
+ 
+    .summary-left {
+      display: grid;
+      gap: 8px;
+    }
+ 
+    .week-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(22,163,74,0.10);
+      border: 1px solid rgba(22,163,74,0.16);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+ 
+    .week-title {
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      line-height: 1.25;
+      color: #0f172a;
+    }
+ 
+    .week-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+ 
+    .toggle-indicator {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #22c55e);
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+ 
+    details[open] .toggle-indicator {
+      transform: rotate(45deg);
+    }
+ 
+    .week-content {
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+ 
+    .content-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+ 
+    .content-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid var(--accent);
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+    }
+ 
+    .content-block.analysis {
+      border-left-color: var(--accent-3);
+    }
+ 
+    .content-block.prediction {
+      border-left-color: var(--accent-2);
+    }
+ 
+    .content-block h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+ 
+    .content-block p {
+      margin: 0 0 10px;
+      color: #1e293b;
+    }
+ 
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+ 
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+ 
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      background: #eef2ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+    }
+ 
+    .chip.green {
+      background: #ecfdf5;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+ 
+    .chip.orange {
+      background: #fff7ed;
+      color: #9a3412;
+      border-color: #fed7aa;
+    }
+ 
+    .sources {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed #cbd5e1;
+      color: #475569;
+      font-size: 0.94rem;
+    }
+ 
+    .sources a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 700;
+    }
+ 
+    .sources a:hover {
+      text-decoration: underline;
+    }
+ 
+    .footer-note {
+      margin-top: 28px;
+      color: rgba(226,232,240,0.85);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+ 
+    /* Optional: auto-open first entry on load if JavaScript is off, keep as-is with open attribute in HTML */
+ 
+    @media (max-width: 700px) {
+      .hero {
+        padding: 28px 22px;
+      }
+ 
+      summary.week-summary {
+        grid-template-columns: 1fr;
+      }
+ 
+      .toggle-indicator {
+        justify-self: start;
+      }
+ 
+      .week-content {
+        padding: 0 18px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="hero">
+      <div class="eyebrow">🚴 UCI Road Cycling • Weekly Blog</div>
+      <h1>Spring Classics & Stage Race Momentum</h1>
+      <p>
+        A clean, expandable weekly cycling blog designed for GitHub Pages. Add new weeks by duplicating a
+        <code>&lt;details class="week-card"&gt;</code> block and pasting the next entry underneath.
+      </p>
+    </header>
+ 
+    <h2 class="section-title">Weekly Entries</h2>
+ 
+    <main class="accordion">
+      <!-- WEEK ENTRY START -->
+      <details class="week-card" open>
+        <summary class="week-summary">
+          <div class="summary-left">
+            <span class="week-label">Week of April 5, 2026</span>
+            <h2 class="week-title">Monument Glory at the Tour of Flanders</h2>
+            <p class="week-subtitle">
+              Pogačar conquers Flanders, Ganna sets the tone in Belgium, and Paul Seixas launches a breakthrough run at Itzulia Basque Country.
+            </p>
+          </div>
+          <div class="toggle-indicator">+</div>
+        </summary>
+ 
+        <div class="week-content">
+          <div class="meta-row">
+            <span class="chip green">Tour of Flanders • April 5, 2026</span>
+            <span class="chip">Dwars door Vlaanderen • April 1, 2026</span>
+            <span class="chip orange">Itzulia Basque Country • April 6–11, 2026</span>
+          </div>
+ 
+          <div class="content-grid">
+            <section class="content-block">
+              <h3>Recap</h3>
+              <p>
+                The first major highlight of April came with the <strong>Tour of Flanders (Ronde van Vlaanderen)</strong>
+                on April 5, 2026, where <strong>Tadej Pogačar</strong> delivered a commanding performance to take victory
+                in one of cycling’s most iconic cobbled Monuments. This win capped off an intense early Classics campaign
+                and reaffirmed his dominance across multiple terrain types.
+              </p>
+              <p>
+                Earlier in the week, <strong>Dwars door Vlaanderen</strong> (April 1) saw <strong>Filippo Ganna</strong>
+                claim victory, setting the tone for a highly competitive Belgian classics block. Meanwhile, the stage race
+                <strong>Itzulia Basque Country</strong> (April 6–11) began immediately after Flanders, with emerging French rider
+                <strong>Paul Seixas</strong> later securing the overall win, marking the start of a breakthrough period for him.
+              </p>
+              <p>
+                Taken together, this week represented the transition from early-season form testing to decisive Monument racing,
+                where contenders began to reveal their true ambitions for the spring.
+              </p>
+            </section>
+ 
+            <section class="content-block analysis">
+              <h3>Rider Analysis</h3>
+              <p>
+                <strong>Tadej Pogačar</strong> once again stood out as the defining rider of the moment. His victory at Flanders—a race
+                traditionally dominated by specialists in cobbles and positioning—demonstrates not only his physical strength but
+                also his tactical maturity in chaotic one-day racing. Winning both mountainous races earlier in the season and now
+                a cobbled Monument highlights his rare all-round capability and growing status as the peloton’s most complete rider.
+              </p>
+              <p>
+                Equally compelling is the rise of <strong>Paul Seixas</strong>, whose overall win at Itzulia Basque Country signals a
+                major step forward in his development. Already competitive in stage races, Seixas is beginning to show consistency
+                against elite competition, suggesting he could become a serious GC contender in upcoming Ardennes races and beyond.
+                His trajectory contrasts with that of established stars, showcasing the ongoing generational shift within the sport.
+              </p>
+              <p>
+                Meanwhile, riders such as <strong>Wout van Aert</strong> and <strong>Mathieu van der Poel</strong> remained highly visible
+                but were forced into supporting roles or podium contention rather than outright dominance during this particular week.
+                This subtle shift hints at a more open—and unpredictable—spring Classics landscape.
+              </p>
+            </section>
+ 
+            <section class="content-block prediction">
+              <h3>Prediction</h3>
+              <p>
+                Looking ahead, the immediate focus shifts to <strong>Paris–Roubaix</strong> (April 12), where cobbled specialists are
+                expected to reassert themselves. Despite Pogačar’s Flanders win, Roubaix’s unique brutality may favor riders like
+                <strong>Wout van Aert</strong>, who ultimately capitalized on these conditions later in April to claim victory.
+                However, Pogačar’s current form makes him impossible to discount, and a strong showing would further underline his versatility.
+              </p>
+              <p>
+                Beyond Roubaix, attention will turn to the <strong>Ardennes Classics</strong>, where climbing specialists typically dominate.
+                Here, riders like <strong>Remco Evenepoel</strong> and <strong>Seixas</strong> are likely to come to the forefront,
+                particularly on steeper finishes such as <strong>La Flèche Wallonne</strong> and <strong>Liège–Bastogne–Liège</strong>.
+                Given recent results, expect an intense rivalry between Pogačar and the emerging challengers, especially as fatigue
+                from the cobbled races begins to influence outcomes.
+              </p>
+              <p>
+                Overall, the trajectory suggests a spring defined by both dominance at the top and a growing depth of contenders
+                capable of challenging in different race profiles.
+              </p>
+            </section>
+          </div>
+ 
+          <div class="sources">
+            <strong>Referenced sources:</strong>
+            https://www.procyclingstats.com/ProCyclingStats</a>
+            &nbsp;•&nbsp;
+            <a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+          </div>
+        </div>
+      </details>
+      <!-- WEEK ENTRY END -->
+ 
+      <!--
+        FUTURE WEEKS:
+        Copy the entire <details class="week-card">...</details> block above,
+        paste it below this comment, and update:
+        1) week-label
+        2) week-title
+        3) week-subtitle
+        4) recap / analysis / prediction text
+        5) source links if needed
+      -->
+    </main>
+ 
+    <p class="footer-note">
+      Built for easy copy-and-paste publishing on GitHub Pages. Send the next week’s entry and I’ll append it into this same layout.
+    </p>
+  </div>
+</body>
+</html>
