@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UCI Cycling Weekly Blog</title>
+<title>UCI Cycling Blog</title>
  
 <style>
 body {
@@ -16,66 +16,54 @@ body {
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 30px 20px 60px;
 }
  
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.5rem;
   color: #22c55e;
+  margin-bottom: 30px;
 }
  
-/* TAB MENU */
-.tab-menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+/* WEEK CARD */
+details {
+  background: #ffffff;
+  color: #111827;
+  border-radius: 18px;
   margin-bottom: 25px;
-  justify-content: center;
-}
- 
-.tab-button {
-  padding: 10px 18px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  background: linear-gradient(135deg,#334155,#475569);
-  color: white;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   transition: 0.3s;
 }
  
-.tab-button:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg,#0ea5e9,#22c55e);
+details:hover {
+  transform: translateY(-3px);
 }
  
-.tab-button.active {
-  background: linear-gradient(135deg,#16a34a,#22c55e);
+summary {
+  cursor: pointer;
+  padding: 18px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg,#16a34a,#0ea5e9);
+  color: white;
 }
  
-/* CONTENT CARD */
-.tab-content {
-  display: none;
-  background: #ffffff;
-  color: #111827;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+/* IMAGE */
+.banner {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
 }
  
-.tab-content.active {
-  display: block;
-}
- 
-h2 {
-  color: #16a34a;
+/* CONTENT */
+.content {
+  padding: 25px;
 }
  
 h3 {
-  margin-top: 25px;
   color: #0ea5e9;
+  margin-top: 20px;
 }
  
 p {
@@ -87,181 +75,229 @@ p {
 </head>
  
 <body>
- 
 <div class="container">
-<h1>🚴 UCI Road Cycling Weekly Blog</h1>
  
-<!-- TAB BUTTONS -->
-<div class="tab-menu">
-<button class="tab-button active" onclick="openTab(event,'w1')">Apr 12</button>
-<button class="tab-button" onclick="openTab(event,'w2')">Apr 19</button>
-<button class="tab-button" onclick="openTab(event,'w3')">Apr 26</button>
-<button class="tab-button" onclick="openTab(event,'w4')">May 3</button>
-<button class="tab-button" onclick="openTab(event,'w5')">May 10</button>
-<button class="tab-button" onclick="openTab(event,'w6')">May 17</button>
-<button class="tab-button" onclick="openTab(event,'w7')">May 24–31</button>
-</div>
+<h1>🚴 UCI Road Cycling Blog — April & May 2026</h1>
  
-<!-- WEEK APRIL 12 -->
-<div id="w1" class="tab-content active">
-<h2>Week of April 12, 2026 – Paris–Roubaix</h2>
+<!-- WEEK 1 -->
+<details open>
+<summary>April 1–6 — Flemish Classics Explosion</summary>
+<img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-The second week of April was dominated by the legendary Paris–Roubaix (April 12, 2026), where Wout van Aert triumphed in a dramatic sprint finish ahead of Tadej Pogačar. Known as the “Hell of the North,” Roubaix delivered its usual chaos, with cobbled sectors splintering the field and rewarding both resilience and tactical discipline. Concurrently, the Itzulia Basque Country reached its conclusion, with Paul Seixas securing the overall victory after a consistent and aggressive week in the mountains.
+April opened with Dwars door Vlaanderen, where Filippo Ganna caught Wout van Aert in the final meters of a dramatic 184.6 km race. Days later, Tadej Pogačar won the Tour of Flanders (278 km), defeating van der Poel and Evenepoel with the full elite field present.
 </p>
 <p>
-Together, these races marked the clear transition from cobbled power racing into terrain favoring climbers, effectively closing the Northern Classics phase and ushering in the Ardennes.
+Meanwhile, the Basque Country began with Paul Seixas winning the opening time trial and taking the race lead immediately.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-Van Aert’s victory represents resilience after years of near-misses. His ability to outsprint Pogačar demonstrates his status as a premier Classics rider. Meanwhile, Seixas showed maturity across a full stage race, signaling a generational shift. Pogačar further enhanced his reputation as the most versatile rider in the peloton.
+Ganna proved he can compete in elite Classics beyond time trials, while Pogačar validated himself against every major cobbled contender. Seixas shifted from promising rider to stage-race controller.
 </p>
  
 <h3>Prediction</h3>
 <p>
-Focus shifts to the Ardennes Classics. Climbers like Evenepoel, Pogačar, and Seixas are expected to dominate, with fatigue playing a major role.
+Attention turned to whether Pogačar could handle Roubaix’s brutality and if Seixas could convert his early lead into a major GC statement.
 </p>
-</div>
  
-<!-- WEEK APRIL 19 -->
-<div id="w2" class="tab-content">
-<h2>Week of April 19, 2026 – Amstel Gold Race</h2>
+</div>
+</details>
+ 
+<!-- WEEK 2 -->
+<details>
+<summary>April 7–13 — Roubaix & Seixas Breakthrough</summary>
+<img src="https://images.unsplash.com/photo-1506111583091-becfd4c5d8ec" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-The Ardennes began with Remco Evenepoel winning Amstel Gold Race (April 19), a tactically controlled race defined by climbing and timing.
-</p>
-<p>
-The peloton transitioned fully into terrain requiring sustained power and positioning.
+Paul Seixas dominated Itzulia Basque Country, winning three stages and the GC by over 2 minutes — becoming the youngest winner ever. Paris–Roubaix followed, where Wout van Aert won the fastest edition ever, beating Pogačar in a sprint.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-Evenepoel showed tactical growth. Van Aert and Van der Poel struggled to adapt, while Pogačar remained consistent. Adaptability is now key.
+Van Aert’s Roubaix win marked redemption and national significance. Seixas’ control of Itzulia represented one of the biggest breakthroughs of the spring. Pogačar enhanced his reputation with Flanders + Roubaix results in one week.
 </p>
  
 <h3>Prediction</h3>
 <p>
-The Mur de Huy will produce explosive racing favoring climbers like Evenepoel and Seixas.
+The Ardennes would reward climbers, with Evenepoel, Pogačar, and Seixas expected to emerge as the key riders.
 </p>
-</div>
  
-<!-- WEEK APRIL 26 -->
-<div id="w3" class="tab-content">
-<h2>Week of April 26, 2026 – Ardennes Finale</h2>
+</div>
+</details>
+ 
+<!-- WEEK 3 -->
+<details>
+<summary>April 14–19 — Evenepoel Wins Amstel</summary>
+<img src="https://images.unsplash.com/photo-1520975922284-9f130a2449a9" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-Seixas won La Flèche Wallonne and Pogačar claimed Liège–Bastogne–Liège.
-</p>
-<p>
-These results highlighted contrasting strengths: explosive climbing vs endurance.
+Remco Evenepoel won Amstel Gold Race after a long breakaway with Skjelmose, finishing nearly two minutes ahead of the chasing group.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-Seixas confirmed elite climbing status, while Pogačar remained the benchmark across all terrain types.
+Evenepoel asserted himself as a top Ardennes rider, while Skjelmose confirmed elite status. The race gap highlighted how selective Amstel became.
 </p>
  
 <h3>Prediction</h3>
 <p>
-Transition shifts toward stage racing and Grand Tours. Fatigue may influence results.
+La Flèche Wallonne would favour explosive climbers, especially riders arriving with strong climbing rhythm like Seixas.
 </p>
-</div>
  
-<!-- WEEK MAY 3 -->
-<div id="w4" class="tab-content">
-<h2>Week of May 3, 2026 – Tour de Romandie</h2>
+</div>
+</details>
+ 
+<!-- WEEK 4 -->
+<details>
+<summary>April 20–26 — Ardennes Finale</summary>
+<img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd53" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-Pogačar secured overall victory at the Tour de Romandie, showcasing control across climbing and time trials.
+Seixas won Flèche Wallonne, becoming the youngest ever winner, while Pogačar claimed Liège–Bastogne–Liège after dropping him late.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-His dominance reflects total stage-race mastery, outperforming specialists lacking consistency.
+Seixas confirmed himself as a major player, while Pogačar remained the benchmark, securing his fourth Liège win.
 </p>
  
 <h3>Prediction</h3>
 <p>
-The Giro will test endurance rather than versatility, with Vingegaard emerging as a key challenger.
+Focus moved to Romandie, testing if Classics form could transition into stage-race dominance.
 </p>
-</div>
  
-<!-- WEEK MAY 10 -->
-<div id="w5" class="tab-content">
-<h2>Week of May 10, 2026 – Giro Begins</h2>
+</div>
+</details>
+ 
+<!-- WEEK 5 -->
+<details>
+<summary>April 27–May 3 — Romandie Dominance</summary>
+<img src="https://images.unsplash.com/photo-1526481280691-3c4693490c1c" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-The Giro opened cautiously with sprint stages and GC riders avoiding risk.
+Pogačar dominated Tour de Romandie, winning 4 stages and GC. Georg Zimmermann also claimed a major win at Eschborn–Frankfurt.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-Patience defined contenders, with teams focusing on positioning and safety.
+Pogačar operated at a different level, while Lipowitz and Martinez showed strong GC potential. Zimmermann achieved a career-defining victory.
 </p>
  
 <h3>Prediction</h3>
 <p>
-Mountains will reveal the true GC hierarchy.
+The Giro would shift the sport toward endurance and long-term consistency.
 </p>
-</div>
  
-<!-- WEEK MAY 17 -->
-<div id="w6" class="tab-content">
-<h2>Week of May 17, 2026 – Giro Mid-Race</h2>
+</div>
+</details>
+ 
+<!-- WEEK 6 -->
+<details>
+<summary>May 4–10 — Giro Begins</summary>
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-Mountain stages created separation and shaped the classification.
+The Giro opened in Bulgaria with sprint stages won by Paul Magnier and Guillermo Silva.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-Climbers and team strategy dominated, with fatigue becoming critical.
+The early race favored sprinters and opportunists, with GC contenders staying cautious.
 </p>
  
 <h3>Prediction</h3>
 <p>
-Final Alpine stages will decide the overall winner.
+Mountain stages would soon define the race hierarchy.
 </p>
-</div>
  
-<!-- WEEK MAY 24–31 -->
-<div id="w7" class="tab-content">
-<h2>Week of May 24–31, 2026 – Giro Conclusion</h2>
+</div>
+</details>
+ 
+<!-- WEEK 7 -->
+<details>
+<summary>May 11–17 — Giro Takes Shape</summary>
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" class="banner">
+<div class="content">
  
 <h3>Recap</h3>
 <p>
-Jonas Vingegaard secured overall victory with dominant mountain performances.
+Multiple winners emerged, while Afonso Eulálio held the lead. Vingegaard won key mountain stages.
 </p>
  
 <h3>Rider Analysis</h3>
 <p>
-His consistency and endurance underline Grand Tour mastery, contrasting with Pogačar’s spring dominance.
+Eulálio became a surprise leader, while Vingegaard emerged as the strongest climber.
 </p>
  
 <h3>Prediction</h3>
 <p>
-Focus turns to the Tour de France, where the rivalry between Pogačar and Vingegaard will define the season.
+Time trial and mid-race stages would determine if the lead could hold.
 </p>
-</div>
  
 </div>
+</details>
  
-<script>
-function openTab(evt, tabId) {
-  document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-  document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+<!-- WEEK 8 -->
+<details>
+<summary>May 18–24 — Vingegaard Takes Control</summary>
+<img src="https://images.unsplash.com/photo-1506111583091-becfd4c5d8ec" class="banner">
+<div class="content">
  
-  document.getElementById(tabId).classList.add("active");
-  evt.currentTarget.classList.add("active");
-}
-</script>
+<h3>Recap</h3>
+<p>
+Vingegaard took the overall lead on Stage 14 and began extending his advantage.
+</p>
  
+<h3>Rider Analysis</h3>
+<p>
+This week defined the race hierarchy, with Vingegaard becoming dominant while stage wins remained diverse.
+</p>
+ 
+<h3>Prediction</h3>
+<p>
+Final week would determine margins rather than the winner.
+</p>
+ 
+</div>
+</details>
+ 
+<!-- WEEK 9 -->
+<details>
+<summary>May 25–31 — Giro Conclusion</summary>
+<img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182" class="banner">
+<div class="content">
+ 
+<h3>Recap</h3>
+<p>
+Jonas Vingegaard won the Giro, with multiple stage wins and dominance in the mountains.
+</p>
+ 
+<h3>Rider Analysis</h3>
+<p>
+This performance cemented Vingegaard’s place as a Grand Tour leader. Gall and Hindley completed a strong podium, while Magnier and Ciccone won secondary classifications.
+</p>
+ 
+<h3>Prediction</h3>
+<p>
+The season now turns toward the Tour de France, with rivalry between Pogačar and Vingegaard intensifying.
+</p>
+ 
+</div>
+</details>
+ 
+</div>
 </body>
 </html>
